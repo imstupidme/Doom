@@ -5,7 +5,21 @@ class WADReader:
         self.wad_path = wad_path
         self.wad_file = open(self.wad_path, "rb")
         self.header = self.read_header()
-        print(list(self.header.items()), sep = "\n")
+        self.directory = self.read_directory()
+        print([i for i in self.directory], sep = "\n")
+
+    def read_directory(self):
+        directory = []
+        for i in range(self.header["lump_count"]):
+            offset = self.header["init_offset"] + i * 16
+            lump_info = {
+                "lump_offset": self.read_4_bytes(offset),
+                "lump_size": self.read_4_bytes(offset + 4),
+                "lump_name": self.read_string(offset + 8, 8)
+            }
+            directory.append(lump_info)
+
+        return directory
     
     def read_header(self):
         return {
