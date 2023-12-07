@@ -1,4 +1,5 @@
 import struct
+from pygame.math import Vector2
 
 class WADReader:
     def __init__(self, wad_path):
@@ -6,7 +7,12 @@ class WADReader:
         self.wad_file = open(self.wad_path, "rb")
         self.header = self.read_header()
         self.directory = self.read_directory()
-        print([i for i in self.directory], sep = "\n")
+
+    def read_vertex(self, offset):
+        # 4 bytes = 2h + 2h
+        x = self.read_2_bytes(offset, 'h')
+        y = self.read_2_bytes(offset + 2, 'h')
+        return Vector2(x, y)
 
     def read_directory(self):
         directory = []
@@ -27,10 +33,23 @@ class WADReader:
             'lump_count': self.read_4_bytes(4),  # NUMBER OF ASSETS
             'init_offset': self.read_4_bytes(8), # START POINTER FOR ASSETS
         }
+    
+
+    def read_1_byte(self, offset, byte_format = 'B'):
+        '''
+        byte_format = "b": signed_char, "B": unsigned_char
+        '''
+        return self.read_bytes(offset, 1, byte_format)[0]
+
+    def read_2_bytes(self, offset, byte_format):
+        '''
+        byte_format = "h": int32, "H": uint32
+        '''
+        return self.read_bytes(offset, 2, byte_format)[0]
 
     def read_4_bytes(self, offset, byte_format = 'i'):
         '''
-        byte_format = "i" for int32, "I" for uint32
+        byte_format = "i": int32, "I": uint32
         '''
         return self.read_bytes(offset, 4, byte_format)[0]
     

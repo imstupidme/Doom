@@ -6,7 +6,7 @@ class DoomEngine:
         logger.info("")
         logger.info("STARTED GAME ENGINE!")
         self.wad_path = wad_path
-        self.wad_file = WADData(self)
+        self.wad_data = WADData(self, map_name = "E1M1")
         logger.info("READ WAD FILE SUCCESSFULLY!")
 
 
