@@ -8,7 +8,7 @@ from map_renderer import MapRenderer
 
 class DoomEngine:
     def __init__(self, wad_path = "./wad/DOOM1.WAD"):
-        logger.info("")
+        logger.info("--------------------")
         logger.info("STARTED GAME ENGINE!")
         self.SCREEN = pygame.display.set_mode((WIN_RES))
         self.CLOCK = pygame.time.Clock()

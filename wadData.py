@@ -14,7 +14,18 @@ class WADData:
             self.map_index + self.LUMP_INDICES["VERTEXES"],
             4
         )
+        self.linedefs = self.get_lump_data(
+            self.reader.read_linedef, 
+            self.map_index + self.LUMP_INDICES["LINEDEFS"],
+            14)
+        
         self.reader.close()
+    
+    @staticmethod
+    def print_attrs(obj):
+        print()
+        for attr in obj.__slots__:
+            print(eval(f"obj.{attr}"), end = " ")
 
     def get_lump_data(self, reader_func, lump_index, num_bytes, header_length = 0):
         lump_info = self.reader.directory[lump_index]
