@@ -4,8 +4,8 @@ import logging
 
 log = "[%(asctime)s: %(levelname)s: %(module)s: %(message)s]"
 logs_dir = "./logs"
-log_filepath = os.path.join(logs_dir, "running_logs.log")
 os.makedirs(logs_dir, exist_ok=True)
+log_filepath = os.path.join(logs_dir, "running_logs.log")
 
 logging.basicConfig(
     level=logging.INFO,
