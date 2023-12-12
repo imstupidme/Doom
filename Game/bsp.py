@@ -19,7 +19,6 @@ class BSP:
             seg = self.segs[sub_sector.first_seg_id + i]
             self.engine.map_renderer.draw_seg(seg, sub_sector_id)
 
-
     def render_nodes(self, node_id):
         if node_id>= self.SUB_SECTOR_IDENTIFIER:
             sub_sector_id = node_id - self.SUB_SECTOR_IDENTIFIER

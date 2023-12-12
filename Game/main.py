@@ -31,9 +31,9 @@ class DoomEngine:
         pygame.display.set_caption(f"FPS: {int(self.CLOCK.get_fps())}")
     
     def draw(self):
+        pygame.display.flip()
         self.SCREEN.fill("black")
         self.map_renderer.draw()
-        pygame.display.flip()
     
     def check_events(self):
         for event in pygame.event.get():
