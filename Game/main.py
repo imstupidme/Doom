@@ -5,6 +5,7 @@ from wadData import WADData
 from settings import *
 from map_renderer import MapRenderer
 from player import Player
+from bsp import BSP
 
 class DoomEngine:
     def __init__(self, wad_path = "../wad/DOOM1.WAD"):
@@ -19,11 +20,13 @@ class DoomEngine:
         self.wad_data = WADData(self, map_name = "E1M1")
         self.map_renderer = MapRenderer(self)
         self.PLAYER = Player(self)
+        self.BSP = BSP(self)
 
         logger.info("READ WAD FILE SUCCESSFULLY!")
     
     def update(self):
         self.PLAYER.update()
+        self.BSP.update()
         self.dT = self.CLOCK.tick()
         pygame.display.set_caption(f"FPS: {int(self.CLOCK.get_fps())}")
     
@@ -46,6 +49,7 @@ class DoomEngine:
         logger.info("EXITING...")
         pygame.quit()
         logger.info("QUIT!")
+        logger.info("--------------------")
         sys.exit()
 
 
