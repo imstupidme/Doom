@@ -13,6 +13,13 @@ class MapRenderer:
     def draw(self):
         self.draw_vertexes()
         self.draw_linedefs()
+        self.draw_player_pos()
+
+    def draw_player_pos(self):
+        pos = self.engine.PLAYER.pos
+        x = self.remap_x(pos.x)
+        y = self.remap_y(pos.y)
+        pygame.draw.circle(self.engine.SCREEN, 'blue', (x, y), 4)
     
     def remap_x(self, n, out_min = 10, out_max = WIN_W - 10):
         return (max(self.x_min, min(n, self.x_max)) - self.x_min) * (out_max - out_min) / (self.x_max - self.x_min) + out_min

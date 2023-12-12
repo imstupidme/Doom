@@ -19,6 +19,24 @@ class WADData:
             self.map_index + self.LUMP_INDICES["LINEDEFS"],
             14)
         
+        self.sub_sectors = self.get_lump_data(
+            self.reader.read_sub_sector,
+            self.map_index + self.LUMP_INDICES["SSECTORS"],
+            4
+        )
+        self.segments = self.get_lump_data(
+            self.reader.read_segment,
+            self.map_index + self.LUMP_INDICES["SEGS"],
+            12
+        )
+        self.things = self.get_lump_data(
+            self.reader.read_things,
+            self.map_index + self.LUMP_INDICES["THINGS"],
+            10
+        )
+        
+        
+        
         self.reader.close()
     
     @staticmethod

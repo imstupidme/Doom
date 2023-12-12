@@ -3,7 +3,7 @@ import sys
 import logging
 
 log = "[%(asctime)s: %(levelname)s: %(module)s: %(message)s]"
-logs_dir = "./logs"
+logs_dir = "../logs"
 os.makedirs(logs_dir, exist_ok=True)
 log_filepath = os.path.join(logs_dir, "running_logs.log")
 
